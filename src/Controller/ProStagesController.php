@@ -38,6 +38,6 @@ class ProStagesController extends AbstractController
     public function descriptifStage($id): Response
     {
         return $this->render('pro_stages/descriptifStage.html.twig',
-      [ 'idRessources' => $id]);
+      [ 'id' => $id]);
     }
 }

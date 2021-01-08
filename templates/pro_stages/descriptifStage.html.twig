@@ -1,3 +1,5 @@
-<h1> Coucou le stage </h1>
+{% extends 'base.html.twig' %}
 
-<p> Ici c'est pas pour déconner {{idRessources}} </p>
+{% block body %}
+<h1>Cette page affichera le descriptif du stage ayant pour identifiant {{id}}</h1>
+{% endblock %}
