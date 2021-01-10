@@ -1,5 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block titre %}
-<h1>Cette page affichera la liste des formations de l'IUT</h1>
 {% endblock %}
+
+{% set idEntreprise = idE %}
+{% switch idE %}
+    {% case 'dut-informatique' %}
+        <h1>Cette page affiche les stages proposés par DUT Informatique : </h1>";
+    {% case 'lp-metiers-du-numerique' %}
+        <h1>Cette page affiche les stages proposés par  : </h1>";
+    {% case 'value4' %}
+        <p>value is "value3" or "value4"</p>
+    {% default %}
+        <p>value is something else</p>
+{% endswitch %}
