@@ -17,11 +17,12 @@ class ProStagesController extends AbstractController
     }
 
     /**
-     * @Route("/entreprises", name="pro_stages_entreprises")
+     * @Route("/entreprises/{id}", name="pro_stages_entreprises")
      */
-    public function listeEntreprises(): Response
+    public function listeEntreprises($id): Response
     {
-        return $this->render('pro_stages/listeEntreprises.html.twig');
+        return $this->render('pro_stages/listeEntreprises.html.twig',
+        [ 'id' => $id]);
     }
 
     /**

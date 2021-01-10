@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
 
-{% block menu %}{% endblock %}
-
-
-{% block body %}
-<h1>Cette page affichera les filtres entreprises</h1>
+{% block titre %}
+<center><h1>Cette page affichera les filtres entreprises</h1></center>
 {% endblock %}
 
-{% block footer %}{% endblock %}
+{% block bouttons %}
+<div class="d-grid gap-2 justify-content-center">
+  <a href="entreprises/IBM"> <button type="button" class="btn btn-dark">IBM</button> </a>
+  <a href="entreprises/Capgemini"> <button type="button" class="btn btn-dark">Capgemini</button> </a>
+  <a href="entreprises/Safran"> <button type="button" class="btn btn-dark">Safran</button> </a>
+</div>
+{% endblock %}
