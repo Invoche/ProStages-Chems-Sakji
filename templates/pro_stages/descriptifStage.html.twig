@@ -2,5 +2,30 @@
 
 
 {% block titre %}
-<h1>Cette page affichera le descriptif du stage ayant pour identifiant {{id}}</h1>
+{% if idStage == "IBM1" %}
+{% set stage = "Sécurité Informatique chez IBM" %}
+{% endif %}
+
+<h1> Stage de : {{stage}} </h1><br/>
+
+{% endblock %}
+
+{% block contenu %}
+<div class="card border-dark mb-3" style="max-width: 100%;">
+  <div class="card-header">[Safran] Stage pratique </div>
+  <div class="card-body text-dark">
+    <center>
+<img src="https://img.trusted.de/logo-96x96/i/b/ibm.png">
+</center>
+    <ul class="list-group">
+    <li class="list-group-item"><b>Prérequis</b>: Aucun </li>
+    <li class="list-group-item"><b>Durée </b>: 10 semaines</li>
+    <li class="list-group-item"><b>Formation</b> : DUT GIM </li>
+    <li class="list-group-item"> <b>Gratification </b>: 800€/m </li>
+    <li class="list-group-item"><b>Date d'ajout</b> : 11 janvier 2021 </li>
+    <li class="list-group-item"><b>Contact</b> : 0102030405</li>
+      <li class="list-group-item"><b>Description</b> : Bonjour nous cherchons un etudiant en DUT GIM pour achever sa formation sur un stage de 10 semaines avec possiblement un prise en alternance</li>
+  </ul>
+  </div>
+</div>
 {% endblock %}
