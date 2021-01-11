@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block titre %}
-{% endblock %}
+<center>
+  {% if idFormation == "dut-informatique" %}
+   {% set formation = "DUT Informatique" %}
 
-{% set idEntreprise = idE %}
-{% switch idE %}
-    {% case 'dut-informatique' %}
-        <h1>Cette page affiche les stages proposés par DUT Informatique : </h1>";
-    {% case 'lp-metiers-du-numerique' %}
-        <h1>Cette page affiche les stages proposés par  : </h1>";
-    {% case 'value4' %}
-        <p>value is "value3" or "value4"</p>
-    {% default %}
-        <p>value is something else</p>
-{% endswitch %}
+   {% elseif idFormation == "lp-metiers-du-numerique" %}
+ {% set formation = "LP Métier du Numérique" %}
+
+    {% elseif idFormation == "dut-genie-industriel" %}
+    {% set formation = "DUT Génie Industriel" %}
+
+ {% endif %}
+ <h1> Cette page affichera la liste des offres pour le {{formation}}  </h1>
+</center>
+{% endblock %}
