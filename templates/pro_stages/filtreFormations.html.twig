@@ -2,13 +2,13 @@
 
 
 {% block titre %}
-<h1>Cette page affichera les filtres formations</h1>
+<center><h1>Cette page affiche les filtres par formations</h1></center>
 {% endblock %}
 
-{% block bouttons %}
+{% block boutons %}
 <div class="d-grid gap-2 justify-content-center">
-  <a href="formations/dut-informatique"> <button type="button" class="btn btn-dark">DUT Informatique</button> </a>
-  <a href="formations/lp-metiers-du-numerique"> <button type="button" class="btn btn-dark">LP Métiers du Numérique</button> </a>
-  <a href="formations/dut-genie-industriel"> <button type="button" class="btn btn-dark">DUT Génie Industriel</button> </a>
+  <a href={{path('pro_stages_formations',{idFormation:'dut-informatique'})}} > <button type="button" class="btn btn-dark">DUT Informatique</button> </a>
+  <a href={{path('pro_stages_formations',{idFormation:'lp-metiers-du-numerique'})}}> <button type="button" class="btn btn-dark">LP Métiers du Numérique</button> </a>
+  <a href={{path('pro_stages_formations',{idFormation:'dut-genie-industriel'})}}> <button type="button" class="btn btn-dark">DUT Génie Industriel</button> </a>
 </div>
 {% endblock %}
