@@ -17,19 +17,29 @@ class AppFixtures extends Fixture
     $faker = \Faker\Factory::create('fr_FR');
 
     // CREATION DES DONNEES FORMATION
-    $nbFormation = 6;
+    $tabNiveau = array (
+      "Dut Info"=>"BAC+2",
+      "Dut GIM"=>"BAC+2",
+      "Licence Pro du numérique"=>"BAC+3",
+      "Licence Pro genie industriel"=>"BAC+3"
+    );
 
-    for ($i=0; $i <=$nbFormation ; $i++) {
+    $tabFormation=array();
+    $i=0;
+    foreach ($tabNiveau as $codeIntitule => $titreNiveau){
       $formation = new Formation();
-      $formation->setNom($faker->jobTitle);
-      $formation->setDescription($faker->realText($maxNbChars = 200, $indexSize = 2));
+      $formation->setIdFormation($i);
+      $formation->setIntitule($codeIntitule);
+      $formation->setNiveau($titreNiveau);
+      $formation->setVille($faker->city);
+      $tabFormation[]=$formation;
 
       $manager->persist($formation);
-
+      $i++;
     }
 
     // CREATION DES DONNEES ENTREPRISE
-    $activiteEntreprise = array (
+    $activitesEntreprise = array(
       "Bancaire",
       "Web",
       "Base de Donnee",
@@ -38,33 +48,57 @@ class AppFixtures extends Fixture
     );
 
     $tabEntreprise = array();
-    for ($i=0; $i <= 6 ; $i++) {
+    for ($i=0; $i <= 7 ; $i++) {
       $entreprise = new Entreprise();
+      $entreprise->setIdEntreprise($i);
       $entreprise->setNom($faker->company);
       $entreprise->setAdresse($faker->address);
-      $entreprise->setActivite($faker->randomElement($activiteEntreprise));
-      $entreprise->setSite($faker->url);
-
+      $entreprise->setActivite($faker->randomElement($activitesEntreprise));
       $manager->persist($entreprise);
       $tabEntreprise[]=$entreprise;
     }
 
     // CREATION DES DONNEES STAGES
-    $nbStage = 6;
-    for ($numStage=0; $numStage <= $nbStage; $numStage++) {
-      $stage = new Stage();
-      $stage -> setIntitule($faker->sentence($nbWords = 6, $variableNbWords = true));
-      $stage -> setMission($faker->realText($maxNbChars = 200, $indexSize = 2));
-      $stage -> setAdresseMail($faker->email);
-      $stage -> addFormation($formation);
+    $differentesDuree = array(
+      "6 semaines",
+      "7 semaines",
+      "8 semaines",
+      "9 semaines",
+    );
 
-      // Création relation
+    $differentesCompetences = array(
+      "PHP",
+      "C++",
+      "UML",
+      "SQL",
+      "javascripts"
+    );
+
+    $differentesExperiences = array(
+      "1 mois",
+      "2 mois",
+      "3 mois",
+      "6 mois"
+    );
+
+    for ($numStage=0; $numStage <= 12; $numStage++) {
+      $stage = new Stage();
+      $stage->setIdStage($numStage);
+      $stage->setIntitule($faker->realText($maxNbChars = 40, $indexSize = 2));
+      $stage->setDateDebut($faker->date);
+      $stage->setDuree($faker->randomElement($differentesDuree));
+      $stage->setCompetence($faker->randomElement($differentesCompetences));
+      $stage->setExperience($faker->randomElement($differentesExperiences));
+
       $numEntreprise = $faker->numberBetween($min = 0, $max = 6);
-      $stage -> setEntreprises($tabEntreprise[$numEntreprise]);
+      $stage->setEntreprise($tabEntreprise[$numEntreprise]);
       $tabEntreprise[$numEntreprise]->addStage($stage);
 
+      $numFormation = $faker->numberBetween($min = 0, $max = 3);
+      $stage->setFormation($tabFormation[$numFormation]);
+      $tabFormation[$numFormation]->addStage($stage);
       $manager->persist($stage);
-    }
-    $manager->flush();
   }
+  $manager->flush();
+}
 }

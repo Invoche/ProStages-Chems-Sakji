@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\StageRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,39 +18,62 @@ class Stage
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="integer")
+     */
+    private $idStage;
+
+    /**
+     * @ORM\Column(type="string", length=255)
      */
     private $intitule;
 
     /**
-     * @ORM\Column(type="string", length=1000)
+     * @ORM\Column(type="string", length=300)
      */
-    private $mission;
+    private $dateDebut;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=255)
      */
-    private $adresseMail;
+    private $duree;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Formation::class)
+     * @ORM\Column(type="string", length=400)
      */
-    private $formation;
+    private $competence;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Entreprise::class)
+     * @ORM\Column(type="string", length=300)
+     */
+    private $experience;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="stages")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $entreprises;
+    private $entreprise;
 
-    public function __construct()
-    {
-        $this->formation = new ArrayCollection();
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity=Formation::class, inversedBy="stages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $formation;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getIdStage(): ?int
+    {
+        return $this->idStage;
+    }
+
+    public function setIdStage(int $idStage): self
+    {
+        $this->idStage = $idStage;
+
+        return $this;
     }
 
     public function getIntitule(): ?string
@@ -67,62 +88,74 @@ class Stage
         return $this;
     }
 
-    public function getMission(): ?string
+    public function getDateDebut(): ?string
     {
-        return $this->mission;
+        return $this->dateDebut;
     }
 
-    public function setMission(string $mission): self
+    public function setDateDebut(string $dateDebut): self
     {
-        $this->mission = $mission;
+        $this->dateDebut = $dateDebut;
 
         return $this;
     }
 
-    public function getAdresseMail(): ?string
+    public function getDuree(): ?string
     {
-        return $this->adresseMail;
+        return $this->duree;
     }
 
-    public function setAdresseMail(string $adresseMail): self
+    public function setDuree(string $duree): self
     {
-        $this->adresseMail = $adresseMail;
+        $this->duree = $duree;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Formation[]
-     */
-    public function getFormation(): Collection
+    public function getCompetence(): ?string
+    {
+        return $this->competence;
+    }
+
+    public function setCompetence(string $competence): self
+    {
+        $this->competence = $competence;
+
+        return $this;
+    }
+
+    public function getExperience(): ?string
+    {
+        return $this->experience;
+    }
+
+    public function setExperience(string $experience): self
+    {
+        $this->experience = $experience;
+
+        return $this;
+    }
+
+    public function getEntreprise(): ?Entreprise
+    {
+        return $this->entreprise;
+    }
+
+    public function setEntreprise(?Entreprise $entreprise): self
+    {
+        $this->entreprise = $entreprise;
+
+        return $this;
+    }
+
+    public function getFormation(): ?Formation
     {
         return $this->formation;
     }
 
-    public function addFormation(Formation $formation): self
+    public function setFormation(?Formation $formation): self
     {
-        if (!$this->formation->contains($formation)) {
-            $this->formation[] = $formation;
-        }
-
-        return $this;
-    }
-
-    public function removeFormation(Formation $formation): self
-    {
-        $this->formation->removeElement($formation);
-
-        return $this;
-    }
-
-    public function getEntreprises(): ?Entreprise
-    {
-        return $this->entreprises;
-    }
-
-    public function setEntreprises(?Entreprise $entreprises): self
-    {
-        $this->entreprises = $entreprises;
+        $this->formation = $formation;
 
         return $this;
     }
