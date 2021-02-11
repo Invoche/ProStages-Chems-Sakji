@@ -14,9 +14,17 @@ class ProStagesController extends AbstractController
     /**
      * @Route("/", name="pro_stages_accueil")
      */
-    public function index(): Response
+    public function index()
     {
-        return $this->render('pro_stages/index.html.twig');
+      // Récupérer le repository de l'entité Stages
+      $repositoryStages = $this->getDoctrine()->getRepository(Stage::class);
+
+      // Récupérer les stages enregistrées en BD
+      $stages = $repositoryStages->findAll();
+
+
+      // Envoyer les stages récupérées à la vue chargée de les afficher
+      return $this->render('pro_stages/index.html.twig',['stages'=>$stages]);
     }
 
     /**
@@ -54,11 +62,18 @@ class ProStagesController extends AbstractController
     }
 
     /**
-     * @Route("/stage/{idStage}", name="pro_stages_stages")
+     * @Route("/stage/{id}", name="pro_stages_stages")
      */
-    public function descriptifStage($idStage): Response
+    public function descriptifStage($id)
     {
-        return $this->render('pro_stages/descriptifStage.html.twig',
-      [ 'idStage' => $idStage]);
+      // Récupérer le repository de l'entité Stages
+      $repositoryStages = $this->getDoctrine()->getRepository(Stage::class);
+
+      // Récupérer les stages enregistrées en BD
+      $stages = $repositoryStages->find($id);
+
+      // Envoyer les stages récupérées à la vue chargée de les afficher
+      return $this->render('pro_stages/descriptifStage.html.twig',
+      ['stages'=>$stages]);
     }
 }

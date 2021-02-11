@@ -2,9 +2,7 @@
 
 
 {% block titre %}
-{% if idStage == "IBM1" %}
-{% set stage = "Sécurité Informatique chez IBM" %}
-<h1> Stage de : {{stage}} </h1><br/>
+<h1> Stage de : {{stages.intitule}} </h1><br/>
 
 <div class="card border-dark mb-3" style="max-width: 100%;">
   <div class="card-header">Stage chez IBM</div>
@@ -13,15 +11,13 @@
 <img src="https://img.trusted.de/logo-96x96/i/b/ibm.png">
 </center>
     <ul class="list-group">
-    <li class="list-group-item"><b>Prérequis</b>: Aucun </li>
-    <li class="list-group-item"><b>Durée </b>: 8 semaines</li>
-    <li class="list-group-item"><b>Formation</b> : DUT Informatique </li>
-    <li class="list-group-item"> <b>Gratification </b>: 850€/m </li>
-    <li class="list-group-item"><b>Date d'ajout</b> : 11 avril 2021 </li>
-    <li class="list-group-item"><b>Contact</b> : 06.22.45.87.87</li>
-    <li class="list-group-item"><b>Description</b> : Bonjour, nous recherchons un etudiant en DUT Informatique pour achever sa formation sur un stage de 8 semaines dans le service Bancaire.</li>
+    <li class="list-group-item"><b>Durée </b>: {{stages.duree}} </li>
+    <li class="list-group-item"><b>Date de début</b> : {{stages.dateDebut}} </li>
+    <li class="list-group-item"><b>Compétence</b> : {{stages.competence}} </li>
+    <li class="list-group-item"><b>Expériences</b> : {{stages.experience}}</li>
+    <li class="list-group-item"><b>Description</b> : Aucune </li>
   </ul>
   </div>
 </div>
-{% endif %}
+
 {% endblock %}

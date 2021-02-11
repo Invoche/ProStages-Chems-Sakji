@@ -16,16 +16,16 @@
               Titre
             </th>
             <th>
-              Nom
+              Date début
             </th>
             <th>
-              Activité
+              Durée
             </th>
             <th>
-              Adresse
+              Compétence
             </th>
             <th>
-              Formation concernée
+              Expériences
             </th>
             <th>
               Plus d'infos
@@ -33,86 +33,32 @@
           </tr>
         </thead>
         <tbody>
+
+        {% for stageCourant in stages %}
+
           <tr class="table-light">
             <td>
-              Sécurité Chez IBM
+            {{stageCourant.intitule}}
             </td>
             <td>
-              IBM
+            {{stageCourant.dateDebut}}
             </td>
             <td>
-              Bancaire
+            {{stageCourant.duree}}
             </td>
             <td>
-              21 rue de IBM, 64100 Bayonne
+            {{stageCourant.competence}}
             </td>
             <td>
-              DUT Informatique
+            {{stageCourant.experience}}
             </td>
             <td>
-              <a href="stage/IBM1"> <button type="button" class="btn btn-primary">En savoir plus</button> </a>
+              <a href="{{path('pro_stages_stages',{id:stageCourant.id})}}"> <button type="button" class="btn btn-primary">En savoir plus</button> </a>
             </td>
           </tr>
-          <tr class="table-light">
-            <td>
-              Système informatique Capgemini
-            </td>
-            <td>
-              Capgemini
-            </td>
-            <td>
-              Bancaire
-            </td>
-            <td>
-              17 rue Cap, 64100 Bayonne
-            </td>
-            <td>
-              LP métier du numérique
-            </td>
-            <td>
-              <a href="stage/Capgemini1"> <button type="button" class="btn btn-primary">En savoir plus</button> </a>
-            </td>
-          </tr>
-          <tr class="table-light">
-            <td>
-              Sécurité Chez IBM
-            </td>
-            <td>
-              IBM
-            </td>
-            <td>
-              Bancaire
-            </td>
-            <td>
-              21 rue de IBM, 64100 Bayonne
-            </td>
-            <td>
-              DUT Génie Industriel
-            </td>
-            <td>
-              <a href="stage/IBM2"> <button type="button" class="btn btn-primary">En savoir plus</button> </a>
-            </td>
-          </tr>
-          <tr class="table-light">
-            <td>
-              Système informatique Safran
-            </td>
-            <td>
-              Safran
-            </td>
-            <td>
-              Hélicoptère
-            </td>
-            <td>
-              27 rue Safran, 64100 Bayonne
-            </td>
-            <td>
-              DUT Informatique
-            </td>
-            <td>
-              <a href="stage/Safran1"> <button type="button" class="btn btn-primary">En savoir plus</button> </a>
-            </td>
-          </tr>
+
+        {% endfor %}
+
         </tbody>
       </table>
     </div>
