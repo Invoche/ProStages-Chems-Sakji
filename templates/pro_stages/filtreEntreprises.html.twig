@@ -7,8 +7,11 @@
 
 {% block boutons %}
 <div class="d-grid gap-2 justify-content-center">
-  <a href={{path('pro_stages_entreprises',{idEntreprise:'IBM'})}}><button type="button" class="btn btn-dark">IBM</button> </a>
-  <a href={{path('pro_stages_entreprises',{idEntreprise:'Capgemini'})}}> <button type="button" class="btn btn-dark">Capgemini</button> </a>
-  <a href={{path('pro_stages_entreprises',{idEntreprise:'Safran'})}}> <button type="button" class="btn btn-dark">Safran</button> </a>
+
+{% for entrepriseCourante in entreprise %}
+
+  <a href={{path('pro_stages_entreprises',{id:entrepriseCourante.id})}}><button type="button" class="btn btn-dark">{{entrepriseCourante.nom}}</button> </a>
+
+{% endfor %}
 </div>
 {% endblock %}

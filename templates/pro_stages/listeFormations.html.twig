@@ -1,17 +1,65 @@
 {% extends 'base.html.twig' %}
 
 {% block titre %}
+<h1>Cette page affiche les stages proposés par {{formation.intitule}} : </h1>
+
 <center>
-  {% if idFormation == "dut-informatique" %}
-   {% set formation = "DUT Informatique" %}
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr class="table-light">
+            <th>
+              Titre
+            </th>
+            <th>
+              Date début
+            </th>
+            <th>
+              Durée
+            </th>
+            <th>
+              Compétence
+            </th>
+            <th>
+              Expériences
+            </th>
+            <th>
+              Plus d'infos
+            </th>
+          </tr>
+        </thead>
+        <tbody>
 
-   {% elseif idFormation == "lp-metiers-du-numerique" %}
- {% set formation = "LP Métier du Numérique" %}
+{% for stage in formation.stages %}
 
-    {% elseif idFormation == "dut-genie-industriel" %}
-    {% set formation = "DUT Génie Industriel" %}
+          <tr class="table-light">
+            <td>
+            {{stage.intitule}}
+            </td>
+            <td>
+            {{stage.dateDebut}}
+            </td>
+            <td>
+            {{stage.duree}}
+            </td>
+            <td>
+            {{stage.competence}}
+            </td>
+            <td>
+            {{stage.experience}}
+            </td>
+            <td>
+              <a href="{{path('pro_stages_stages',{id:stage.id})}}"> <button type="button" class="btn btn-primary">En savoir plus</button> </a>
+            </td>
+          </tr>
 
- {% endif %}
- <h1> Cette page affichera la liste des offres pour le {{formation}}  </h1>
+{% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+  </div>
 </center>
+
 {% endblock %}

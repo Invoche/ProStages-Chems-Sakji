@@ -1,5 +1,65 @@
 {% extends 'base.html.twig' %}
 
 {% block titre %}
-<h1>Cette page affiche les stages proposés par {{idEntreprise}} : </h1>
+<h1>Cette page affiche les stages proposés par {{entreprise.nom}} : </h1>
+
+<center>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr class="table-light">
+            <th>
+              Titre
+            </th>
+            <th>
+              Date début
+            </th>
+            <th>
+              Durée
+            </th>
+            <th>
+              Compétence
+            </th>
+            <th>
+              Expériences
+            </th>
+            <th>
+              Plus d'infos
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+
+{% for stage in entreprise.stages %}
+
+          <tr class="table-light">
+            <td>
+            {{stage.intitule}}
+            </td>
+            <td>
+            {{stage.dateDebut}}
+            </td>
+            <td>
+            {{stage.duree}}
+            </td>
+            <td>
+            {{stage.competence}}
+            </td>
+            <td>
+            {{stage.experience}}
+            </td>
+            <td>
+              <a href="{{path('pro_stages_stages',{id:stage.id})}}"> <button type="button" class="btn btn-primary">En savoir plus</button> </a>
+            </td>
+          </tr>
+
+{% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</center>
+
 {% endblock %}

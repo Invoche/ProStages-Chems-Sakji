@@ -28,37 +28,58 @@ class ProStagesController extends AbstractController
     }
 
     /**
-     * @Route("/entreprises/{idEntreprise}", name="pro_stages_entreprises")
+     * @Route("/entreprises/{id}", name="pro_stages_entreprises")
      */
-    public function listeEntreprises($idEntreprise): Response
+    public function listeEntreprises($id)
     {
-        return $this->render('pro_stages/listeEntreprises.html.twig',
-        [ 'idEntreprise' => $idEntreprise]);
+      // Récupérer le repository de l'entité Stages
+      $repositoryEntreprises = $this->getDoctrine()->getRepository(Entreprise::class);
+
+
+      // Récupérer les stages enregistrées en BD
+      $entreprise = $repositoryEntreprises->find($id);
+
+      return $this->render('pro_stages/listeEntreprises.html.twig',
+        [ 'entreprise' => $entreprise]);
     }
 
     /**
      * @Route("/filtreEntreprises", name="pro_stages_filtre_entreprises")
      */
-    public function filtreEntreprises(): Response
+    public function filtreEntreprises()
     {
-        return $this->render('pro_stages/filtreEntreprises.html.twig');
+      $repositoryEntreprises = $this->getDoctrine()->getRepository(Entreprise::class);
+
+      $entreprise = $repositoryEntreprises->findAll();
+
+      return $this->render('pro_stages/filtreEntreprises.html.twig', ['entreprise'=>$entreprise]);
     }
 
     /**
-     * @Route("/formations/{idFormation}", name="pro_stages_formations")
+     * @Route("/formations/{id}", name="pro_stages_formations")
      */
-    public function listeFormations($idFormation): Response
+    public function listeFormations($id)
     {
-        return $this->render('pro_stages/listeFormations.html.twig',
-      [ 'idFormation' => $idFormation]);
+      // Récupérer le repository de l'entité Stages
+      $repositoryFormations = $this->getDoctrine()->getRepository(Formation::class);
+
+
+      // Récupérer les stages enregistrées en BD
+      $formation = $repositoryFormations->find($id);
+
+      return $this->render('pro_stages/listeFormations.html.twig', ['formation' => $formation]);
     }
 
     /**
      * @Route("/filtreFormations", name="pro_stages_filtre_formations")
      */
-    public function filtreFormations(): Response
+    public function filtreFormations()
     {
-        return $this->render('pro_stages/filtreFormations.html.twig');
+      $repositoryFormations = $this->getDoctrine()->getRepository(Formation::class);
+
+      $formation = $repositoryFormations->findAll();
+
+      return $this->render('pro_stages/filtreFormations.html.twig', ['formation'=>$formation]);
     }
 
     /**
@@ -69,8 +90,10 @@ class ProStagesController extends AbstractController
       // Récupérer le repository de l'entité Stages
       $repositoryStages = $this->getDoctrine()->getRepository(Stage::class);
 
+
       // Récupérer les stages enregistrées en BD
       $stages = $repositoryStages->find($id);
+
 
       // Envoyer les stages récupérées à la vue chargée de les afficher
       return $this->render('pro_stages/descriptifStage.html.twig',

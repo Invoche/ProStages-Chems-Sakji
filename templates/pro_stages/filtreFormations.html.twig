@@ -7,8 +7,12 @@
 
 {% block boutons %}
 <div class="d-grid gap-2 justify-content-center">
-  <a href={{path('pro_stages_formations',{idFormation:'dut-informatique'})}} > <button type="button" class="btn btn-dark">DUT Informatique</button> </a>
-  <a href={{path('pro_stages_formations',{idFormation:'lp-metiers-du-numerique'})}}> <button type="button" class="btn btn-dark">LP Métiers du Numérique</button> </a>
-  <a href={{path('pro_stages_formations',{idFormation:'dut-genie-industriel'})}}> <button type="button" class="btn btn-dark">DUT Génie Industriel</button> </a>
+
+{% for formationCourante in formation %}
+
+  <a href={{path('pro_stages_formations',{id:formationCourante.id})}} > <button type="button" class="btn btn-dark">{{formationCourante.intitule}}</button> </a>
+
+{% endfor %}
+
 </div>
 {% endblock %}
