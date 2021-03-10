@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block titre %}
-<h1>Cette page affiche les stages proposés par {{formation.intitule}} : </h1>
+<h1>Cette page affiche les stages proposés par {{intitule}} : </h1>
 
 <center>
   <div class="row">
@@ -10,7 +10,10 @@
         <thead>
           <tr class="table-light">
             <th>
-              Titre
+              Titre du stage
+            </th>
+            <th>
+              Nom de l'entreprise
             </th>
             <th>
               Date début
@@ -25,32 +28,41 @@
               Expériences
             </th>
             <th>
+              Formation
+            </th>
+            <th>
               Plus d'infos
             </th>
           </tr>
         </thead>
         <tbody>
 
-{% for stage in formation.stages %}
+{% for stageCourant in stages %}
 
           <tr class="table-light">
             <td>
-            {{stage.intitule}}
+            {{stageCourant.intitule}}
             </td>
             <td>
-            {{stage.dateDebut}}
+            {{stageCourant.entreprise.nom}}
             </td>
             <td>
-            {{stage.duree}}
+            {{stageCourant.dateDebut}}
             </td>
             <td>
-            {{stage.competence}}
+            {{stageCourant.duree}}
             </td>
             <td>
-            {{stage.experience}}
+            {{stageCourant.competence}}
             </td>
             <td>
-              <a href="{{path('pro_stages_stages',{id:stage.id})}}"> <button type="button" class="btn btn-primary">En savoir plus</button> </a>
+            {{stageCourant.experience}}
+            </td>
+            <td>
+            {{stageCourant.formation.intitule}}
+            </td>
+            <td>
+              <a href="{{path('pro_stages_stages',{id:stageCourant.id})}}"> <button type="button" class="btn btn-primary">En savoir plus</button> </a>
             </td>
           </tr>
 

@@ -55,18 +55,18 @@ class ProStagesController extends AbstractController
     }
 
     /**
-     * @Route("/formations/{id}", name="pro_stages_formations")
+     * @Route("/formations/{intitule}", name="pro_stages_formations")
      */
-    public function listeFormations($id)
+    public function listeFormations($intitule)
     {
       // Récupérer le repository de l'entité Stages
-      $repositoryFormations = $this->getDoctrine()->getRepository(Formation::class);
+      $repositoryStages = $this->getDoctrine()->getRepository(Stage::class);
 
 
       // Récupérer les stages enregistrées en BD
-      $formation = $repositoryFormations->find($id);
+      $stages = $repositoryStages->findByNomFormation($intitule);
 
-      return $this->render('pro_stages/listeFormations.html.twig', ['formation' => $formation]);
+      return $this->render('pro_stages/listeFormations.html.twig', ['stages' => $stages, 'intitule'=> $intitule]);
     }
 
     /**

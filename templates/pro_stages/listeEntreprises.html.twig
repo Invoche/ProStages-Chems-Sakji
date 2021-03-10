@@ -10,7 +10,10 @@
         <thead>
           <tr class="table-light">
             <th>
-              Titre
+              Titre du stage
+            </th>
+            <th>
+              Nom de l'entreprise
             </th>
             <th>
               Date début
@@ -23,6 +26,9 @@
             </th>
             <th>
               Expériences
+            </th>
+            <th>
+              Formation
             </th>
             <th>
               Plus d'infos
@@ -39,6 +45,9 @@
             {{stageCourant.intitule}}
             </td>
             <td>
+            {{stageCourant.entreprise.nom}}
+            </td>
+            <td>
             {{stageCourant.dateDebut}}
             </td>
             <td>
@@ -49,6 +58,9 @@
             </td>
             <td>
             {{stageCourant.experience}}
+            </td>
+            <td>
+            {{stageCourant.formation.intitule}}
             </td>
             <td>
               <a href="{{path('pro_stages_stages',{id:stageCourant.id})}}"> <button type="button" class="btn btn-primary">En savoir plus</button> </a>

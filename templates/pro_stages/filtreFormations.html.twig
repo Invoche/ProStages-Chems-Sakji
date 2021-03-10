@@ -10,7 +10,7 @@
 
 {% for formationCourante in formation %}
 
-  <a href={{path('pro_stages_formations',{id:formationCourante.id})}} > <button type="button" class="btn btn-dark">{{formationCourante.intitule}}</button> </a>
+  <a href={{path('pro_stages_formations',{intitule:formationCourante.intitule})}} > <button type="button" class="btn btn-dark">{{formationCourante.intitule}}</button> </a>
 
 {% endfor %}
 
