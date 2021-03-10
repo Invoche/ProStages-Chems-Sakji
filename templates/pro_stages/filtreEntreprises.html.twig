@@ -10,7 +10,7 @@
 
 {% for entrepriseCourante in entreprise %}
 
-  <a href={{path('pro_stages_entreprises',{id:entrepriseCourante.id})}}><button type="button" class="btn btn-dark">{{entrepriseCourante.nom}}</button> </a>
+  <a href={{path('pro_stages_entreprises',{nom:entrepriseCourante.nom})}}><button type="button" class="btn btn-dark">{{entrepriseCourante.nom}}</button> </a>
 
 {% endfor %}
 </div>

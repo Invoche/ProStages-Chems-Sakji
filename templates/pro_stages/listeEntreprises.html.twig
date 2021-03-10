@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block titre %}
-<h1>Cette page affiche les stages proposés par {{entreprise.nom}} : </h1>
+<h1>Cette page affiche les stages proposés par {{nom}} : </h1>
 
 <center>
   <div class="row">
@@ -31,30 +31,31 @@
         </thead>
         <tbody>
 
-{% for stage in entreprise.stages %}
+        {% for stageCourant in stages %}
+
 
           <tr class="table-light">
             <td>
-            {{stage.intitule}}
+            {{stageCourant.intitule}}
             </td>
             <td>
-            {{stage.dateDebut}}
+            {{stageCourant.dateDebut}}
             </td>
             <td>
-            {{stage.duree}}
+            {{stageCourant.duree}}
             </td>
             <td>
-            {{stage.competence}}
+            {{stageCourant.competence}}
             </td>
             <td>
-            {{stage.experience}}
+            {{stageCourant.experience}}
             </td>
             <td>
-              <a href="{{path('pro_stages_stages',{id:stage.id})}}"> <button type="button" class="btn btn-primary">En savoir plus</button> </a>
+              <a href="{{path('pro_stages_stages',{id:stageCourant.id})}}"> <button type="button" class="btn btn-primary">En savoir plus</button> </a>
             </td>
           </tr>
 
-{% endfor %}
+          {% endfor %}
 
         </tbody>
       </table>
