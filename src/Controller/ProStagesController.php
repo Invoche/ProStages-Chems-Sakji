@@ -8,6 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Entity\Stage;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class ProStagesController extends AbstractController
 {
@@ -30,7 +33,7 @@ class ProStagesController extends AbstractController
     /**
      * @Route("/ajouterEntreprise", name="pro_stages_ajoutEntreprise")
      */
-    public function ajouterEntreprise()
+    public function ajouterEntreprise(Request $request, EntityManagerInterface $manager)
     {
       //Création d'une ressource vierge qui sera remplie par le formulaire
       $entreprise = new Entreprise();
@@ -42,6 +45,18 @@ class ProStagesController extends AbstractController
       ->add('adresse')
       ->add('activite')
       ->getForm();
+
+      $formulaireEntreprise->handleRequest($request);
+
+         if ($formulaireEntreprise->isSubmitted() )
+         {
+            // Enregistrer la ressource en base de donnéelse
+            $manager->persist($entreprise);
+            $manager->flush();
+
+            // Rediriger l'utilisateur vers la page d'accueil
+            return $this->redirectToRoute('pro_stages_accueil');
+         }
 
       // Afficher la page présentant le formulaire d'ajout d'une ressource
       return $this->render('pro_stages/ajoutEntreprise.html.twig',['vueFormulaire' => $formulaireEntreprise->createView()]);

@@ -1,21 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block titrePage %}
-<center><h3>Ajouter une entreprise</h3></<center><br/>
+<center><h3>Ajouter une entreprise</h3></<center><br>
 {% endblock %}
 
 {% block contenuPage %}
-Saisissez les caractéristiques de l'entreprise que vous souhaitez ajouter.
+Saisissez les caractéristiques de l'entreprise que vous souhaitez ajouter :
 
-{{ form_start(vueFormulaire) }}
+{{ form_start(vueFormulaire) }}<br>
 
-{{ form_row(vueFormulaire.idEntreprise) }}
+{{ form_row(vueFormulaire.idEntreprise, {'attr':{'placeholder':"Numéro d'identification..."}})}}<br>
 
-{{ form_row(vueFormulaire.nom) }}
+{{ form_row(vueFormulaire.nom, {'attr':{'placeholder':"Nom de l'entreprise..."}})}}<br>
 
-{{ form_row(vueFormulaire.adresse) }}
+{{ form_row(vueFormulaire.adresse, {'attr':{'placeholder':"Adresse de l'entreprise..."}})}}<br>
 
-{{ form_row(vueFormulaire.activite) }}
+{{ form_row(vueFormulaire.activite, {'attr':{'placeholder':"Domaine d'activité..."}})}}<br>
+
+<button type="submit" class="btn btn-dark">Enregistrer</button>
 
 {{ form_end(vueFormulaire) }}
 
