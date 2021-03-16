@@ -10,7 +10,7 @@ use App\Entity\Formation;
 use App\Entity\Stage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-
+use App\Form\EntrepriseType;
 
 class ProStagesController extends AbstractController
 {
@@ -39,17 +39,11 @@ class ProStagesController extends AbstractController
       $entreprise = new Entreprise();
 
       // Création du formulaire permettant de saisir une ressource
-      $formulaireEntreprise = $this->createFormBuilder($entreprise)
-      ->add('idEntreprise')
-      ->add('nom')
-      ->add('adresse')
-      ->add('activite')
-      ->add('siteWeb')
-      ->getForm();
+      $formulaireEntreprise = $this->createForm(EntrepriseType::class, $entreprise);
 
       $formulaireEntreprise->handleRequest($request);
 
-         if ($formulaireEntreprise->isSubmitted() )
+         if ($formulaireEntreprise->isSubmitted() && $formulaireEntreprise->isValid())
          {
             // Enregistrer la ressource en base de donnéelse
             $manager->persist($entreprise);
@@ -70,17 +64,11 @@ class ProStagesController extends AbstractController
     {
 
       // Création du formulaire permettant de saisir une ressource
-      $formulaireEntreprise = $this->createFormBuilder($entreprise)
-      ->add('idEntreprise')
-      ->add('nom')
-      ->add('adresse')
-      ->add('activite')
-      ->add('siteWeb')
-      ->getForm();
+      $formulaireEntreprise = $this->createForm(EntrepriseType::class, $entreprise);
 
       $formulaireEntreprise->handleRequest($request);
 
-         if ($formulaireEntreprise->isSubmitted() )
+         if ($formulaireEntreprise->isSubmitted() && $formulaireEntreprise->isValid())
          {
             // Enregistrer la ressource en base de donnéelse
             $manager->persist($entreprise);
