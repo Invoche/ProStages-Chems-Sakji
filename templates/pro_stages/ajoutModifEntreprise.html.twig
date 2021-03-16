@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block titrePage %}
-<center><h3>Ajouter une entreprise</h3></<center><br>
+{% if action == "ajouter" %}
+Ajout d'une entreprise
+{% else %}
+Modifier une entreprise
+{% endif %}
 {% endblock %}
 
 {% block contenuPage %}
-Saisissez les caractéristiques de l'entreprise que vous souhaitez ajouter :
+Saisissez les caractéristiques de l'entreprise :
 
 {{ form_start(vueFormulaire) }}<br>
 

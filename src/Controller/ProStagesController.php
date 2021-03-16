@@ -59,8 +59,39 @@ class ProStagesController extends AbstractController
          }
 
       // Afficher la page présentant le formulaire d'ajout d'une ressource
-      return $this->render('pro_stages/ajoutEntreprise.html.twig',['vueFormulaire' => $formulaireEntreprise->createView()]);
+      return $this->render('pro_stages/ajoutModifEntreprise.html.twig',['vueFormulaire' => $formulaireEntreprise->createView(),'action'=>"ajouter"]);
     }
+
+    /**
+     * @Route("/modifierEntreprise/{id}", name="pro_stages_modifEntreprise")
+     */
+    public function modifierEntreprise(Request $request, EntityManagerInterface $manager, Entreprise $entreprise)
+    {
+
+      // Création du formulaire permettant de saisir une ressource
+      $formulaireEntreprise = $this->createFormBuilder($entreprise)
+      ->add('idEntreprise')
+      ->add('nom')
+      ->add('adresse')
+      ->add('activite')
+      ->getForm();
+
+      $formulaireEntreprise->handleRequest($request);
+
+         if ($formulaireEntreprise->isSubmitted() )
+         {
+            // Enregistrer la ressource en base de donnéelse
+            $manager->persist($entreprise);
+            $manager->flush();
+
+            // Rediriger l'utilisateur vers la page d'accueil
+            return $this->redirectToRoute('pro_stages_accueil');
+         }
+
+      // Afficher la page présentant le formulaire d'ajout d'une ressource
+      return $this->render('pro_stages/ajoutModifEntreprise.html.twig',['vueFormulaire' => $formulaireEntreprise->createView(),'action'=>"modifier"]);
+    }
+
 
     /**
      * @Route("/entreprises/{nom}", name="pro_stages_entreprises")
