@@ -54,6 +54,7 @@ class AppFixtures extends Fixture
       $entreprise->setNom($faker->company);
       $entreprise->setAdresse($faker->address);
       $entreprise->setActivite($faker->randomElement($activitesEntreprise));
+      $entreprise->setSiteWeb($faker->url);
       $manager->persist($entreprise);
       $tabEntreprise[]=$entreprise;
     }

@@ -44,6 +44,7 @@ class ProStagesController extends AbstractController
       ->add('nom')
       ->add('adresse')
       ->add('activite')
+      ->add('siteWeb')
       ->getForm();
 
       $formulaireEntreprise->handleRequest($request);
@@ -74,6 +75,7 @@ class ProStagesController extends AbstractController
       ->add('nom')
       ->add('adresse')
       ->add('activite')
+      ->add('siteWeb')
       ->getForm();
 
       $formulaireEntreprise->handleRequest($request);
