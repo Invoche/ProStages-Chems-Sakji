@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block titrePage %}
+
+Ajout d'une stage
+
+{% endblock %}
+
+{% block contenuPage %}
+Saisissez les caractéristiques du stage :
+
+{{ form_start(vueFormulaire) }}<br>
+
+{{ form_row(vueFormulaire.idStage, {'attr':{'placeholder':"Numéro d'identification..."}})}}<br>
+
+{{ form_row(vueFormulaire.intitule, {'attr':{'placeholder':"Titre du stage..."}})}}<br>
+
+{{ form_row(vueFormulaire.dateDebut, {'attr':{'placeholder':"Date du stage..."}})}}<br>
+
+{{ form_row(vueFormulaire.duree, {'attr':{'placeholder':"Durée du stage..."}})}}<br>
+
+{{ form_row(vueFormulaire.competence, {'attr':{'placeholder':"Vos compétences..."}})}}<br>
+
+{{ form_row(vueFormulaire.experience, {'attr':{'placeholder':"Vos expériences professionnelles..."}})}}<br>
+
+{{ form_row(vueFormulaire.entreprise, {'label':"L'entreprise du stage"})}}<br>
+
+{{ form_row(vueFormulaire.formation, {'label':"Les formations concernées du stage"})}}<br>
+
+<button type="submit" class="btn btn-dark">Enregistrer</button>
+
+{{ form_end(vueFormulaire) }}
+
+{% endblock %}
