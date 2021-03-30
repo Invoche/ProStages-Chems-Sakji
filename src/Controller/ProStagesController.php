@@ -33,7 +33,7 @@ class ProStagesController extends AbstractController
     }
 
     /**
-     * @Route("/ajouterEntreprise", name="pro_stages_ajoutEntreprise")
+     * @Route("/admin/ajouterEntreprise", name="pro_stages_ajoutEntreprise")
      */
     public function ajouterEntreprise(Request $request, EntityManagerInterface $manager)
     {
@@ -85,7 +85,7 @@ class ProStagesController extends AbstractController
     }
 
     /**
-     * @Route("/ajouterStage", name="pro_stages_ajoutStage")
+     * @Route("/admin/profile/ajouterStage", name="pro_stages_ajoutStage")
      */
     public function ajouterStage(Request $request, EntityManagerInterface $manager)
     {
