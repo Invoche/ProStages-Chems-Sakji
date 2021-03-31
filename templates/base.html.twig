@@ -21,19 +21,26 @@
       <div class="col-md-12">
         <ul class="nav justify-content-center">
           <li class="nav-item">
-            <a class="nav-link active" href="http://127.0.0.1:8000/filtreEntreprises">Filtre par Entreprises</a>
+            <a class="nav-link active" href="{{path('pro_stages_accueil')}}">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="http://127.0.0.1:8000/filtreFormations">Filtre par Formations</a>
+            <a class="nav-link active" href="{{path('pro_stages_filtre_entreprises')}}">Filtre par Entreprises</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="http://127.0.0.1:8000/">Accueil</a>
+            <a class="nav-link active" href="{{path('pro_stages_filtre_formations')}}">Filtre par Formations</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link active" href="{{path('pro_stages_ajoutEntreprise')}}">Ajouter une entreprise</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="{{path('pro_stages_ajoutStage')}}">Ajouter un stage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{{path('formation_index')}}">Liste des formations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{{path('app_login')}}">Connexion</a>
           </li>
         </ul>
       </div>
