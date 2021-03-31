@@ -39,66 +39,81 @@
           <li class="nav-item">
             <a class="nav-link active" href="{{path('formation_index')}}">Liste des formations</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="{{path('app_login')}}">Connexion</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    {% endblock %}
 
-    <!-- Bloc de Tableau-->
-    {% block bodyTab %}
-    <div class="row">
-      <div class="col-md-12">
-        {% block titre %}{% endblock %}
-        {% block boutons %}{% endblock %}
-        {% block tableau %}{% endblock %}
-      </div>
-    </div>
-    {% endblock %}
+          {% if is_granted('ROLE_USER') %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{{path('app_logout')}}">
+              {{ app.user.prenom }} {{ app.user.nom }}
+              <i class="icon-user"></i>
+              Déconnexion
+              <span class="sr-only"></span></a>
+            </li>
+            {% else %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{{path('app_login')}}">
+                <i class="icon-user"></i>
+                Connexion
+                <span class="sr-only"></span></a>
+              </li>
+              {% endif %}
 
-    <!-- Bloc de contenu-->
-    {% block contenu %}
-    <div class="row" style="margin-top:15px;">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">
-            <h5>
-              {% block titrePage %}{% endblock %}
-            </h5>
-          </div>
-          <div class="card-body">
-            {% block contenuPage %}{% endblock %}
+            </ul>
           </div>
         </div>
-      </div>
-    </div>
-    {% endblock %}
+        {% endblock %}
 
-    <!-- Bloc de fin de page -->
-    <footer style="width: 100%; height: 50px; position: relative; padding-top: 50px; bottom: 0; left: 0; right: 0">
-      {% block footer %}
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card text-center">
-            <div class="card-header">
-              Réalisé par
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Chems Sakji</h5>
-              <p class="card-text">Étudiant en informatique à l'IUT de Bayonne</p>
+        <!-- Bloc de Tableau-->
+        {% block bodyTab %}
+        <div class="row">
+          <div class="col-md-12">
+            {% block titre %}{% endblock %}
+            {% block boutons %}{% endblock %}
+            {% block tableau %}{% endblock %}
+          </div>
+        </div>
+        {% endblock %}
+
+        <!-- Bloc de contenu-->
+        {% block contenu %}
+        <div class="row" style="margin-top:15px;">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5>
+                  {% block titrePage %}{% endblock %}
+                </h5>
+              </div>
+              <div class="card-body">
+                {% block contenuPage %}{% endblock %}
+              </div>
             </div>
           </div>
         </div>
+        {% endblock %}
+
+        <!-- Bloc de fin de page -->
+        <footer style="width: 100%; height: 50px; position: relative; padding-top: 50px; bottom: 0; left: 0; right: 0">
+          {% block footer %}
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card text-center">
+                <div class="card-header">
+                  Réalisé par
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Chems Sakji</h5>
+                  <p class="card-text">Étudiant en informatique à l'IUT de Bayonne</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endblock %}
+        </footer>
+        <!-- Bloc de feuilles de JS -->
+        {% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        {% endblock %}
       </div>
-      {% endblock %}
-    </footer>
-    <!-- Bloc de feuilles de JS -->
-    {% block javascripts %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    {% endblock %}
-  </div>
-</body>
-</html>
+    </body>
+    </html>
